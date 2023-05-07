@@ -1,24 +1,16 @@
-import logo from './logo.svg';
+import { useEffect, useState, useMemo } from 'react';
 import './App.css';
 
-function App() {
+const App = () => {
+  // const [arr, setArr] = useState(null);
+  const max = 40, min = 0;
+  const arr = useMemo(() => (new Array(10).fill(null).map((max, min) => {
+    return Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min))) + Math.ceil(min); //Максимум не включается, минимум включается
+  })), [max, min]);
+
+  console.log('render App', arr);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <div> TEST </div>
   );
 }
 
