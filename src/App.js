@@ -1,16 +1,34 @@
-import { useEffect, useState, useMemo } from 'react';
-import './App.css';
-
+import { useState, useEffect } from "react";
 const App = () => {
-  // const [arr, setArr] = useState(null);
-  const max = 40, min = 0;
-  const arr = useMemo(() => (new Array(10).fill(null).map((max, min) => {
-    return Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min))) + Math.ceil(min); //Максимум не включается, минимум включается
-  })), [max, min]);
+  const [sort, setSort] = useState( new Array(10).fill(null).map(() => (Math.floor(Math.random() * 98) + 2)));
 
-  console.log('render App', arr);
+  useEffect(() => {
+    function bubbleSortConcept1(arr) {
+      let newArr = [];
+      for (let j = arr.length - 1; j > 0; j--) {
+        for (let i = 0; i < j; i++) {
+          if (arr[i] > arr[i + 1]) {
+            newArr[i] = arr[i + 1];
+            newArr[i + 1] = arr[i];
+          } else {
+            newArr[i] = arr[i];
+            newArr[i + 1] = arr[i + 1];
+          }
+        }
+      }
+    }
+    console.log(bubbleSortConcept1(sort))
+    // setSort(bubbleSortConcept1(sort));
+  }, [sort]);
+
+  console.log('render App',  sort);
   return (
-   <div> TEST </div>
+   <div>
+      { sort.map((item, i) => {
+        return <div key={i}>{item}</div>
+      })
+      }
+    </div>
   );
 }
 
